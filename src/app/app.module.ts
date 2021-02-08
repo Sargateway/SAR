@@ -11,6 +11,7 @@ import { FontAwesomeDirective } from 'ng2-fontawesome';
 import { Footer } from './global/footer/footer.component';
 import { NetworkActivitiesComponent } from './content/network-activities/network-activities.component';
 import * as jQuery from 'jquery';
+import { WidgetComponent } from './widget/widget.component';
 
 export const AppRoutes2: Routes = [
   { path: '', component: ContentComponent },
@@ -28,7 +29,8 @@ export const AppRoutes2: Routes = [
     TopNavBarComponent,
     FontAwesomeDirective,
     Footer,
-    NetworkActivitiesComponent
+    NetworkActivitiesComponent,
+    WidgetComponent
   ],
   imports: [BrowserModule, RouterModule.forRoot(AppRoutes2, { useHash: true })],
   providers: [],
