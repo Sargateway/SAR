@@ -12,6 +12,7 @@ import { Footer } from './global/footer/footer.component';
 import { NetworkActivitiesComponent } from './content/network-activities/network-activities.component';
 import * as jQuery from 'jquery';
 import { WidgetComponent } from './widget/widget.component';
+import { HttpClientModule } from '@angular/common/http';
 
 export const AppRoutes2: Routes = [
   { path: '', component: ContentComponent },
@@ -32,7 +33,7 @@ export const AppRoutes2: Routes = [
     NetworkActivitiesComponent,
     WidgetComponent
   ],
-  imports: [BrowserModule, RouterModule.forRoot(AppRoutes2, { useHash: true })],
+  imports: [BrowserModule, RouterModule.forRoot(AppRoutes2, { useHash: true }), HttpClientModule],
   providers: [],
   bootstrap: [AppComponent]
 })
