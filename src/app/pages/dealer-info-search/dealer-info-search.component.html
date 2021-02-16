@@ -1,5 +1,16 @@
-<div class="right_col" [style.height.px]="screenHeight-51" role="main">
-    <p>
-        DEALER WORKS
-    </p>
+<div class="right_col" [style.height.px]="screenHeight-51" role="main"><!-- subtract the size of the footer element, easier to just hardcode this for now -->
+    <div class="row">
+        <widget title="Search Criteria">
+            <div class="row">
+                <input type="text">
+                <label>First Name</label>
+                <button class="btn btn-success">Search <fa-icon [icon]="faSearch"></fa-icon></button>
+            </div>
+        </widget>
+    </div>
+    <div class="row">
+        <widget title="Search Results">
+            a table would go here with results from api call
+        </widget>
+    </div>
 </div>

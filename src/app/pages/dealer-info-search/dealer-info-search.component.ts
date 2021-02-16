@@ -1,5 +1,5 @@
 import { Component, OnInit, HostListener } from '@angular/core';
-import * as jQuery from 'jquery';
+import {faSearch} from '@fortawesome/free-solid-svg-icons'
 
 @Component({
   selector: 'content',
@@ -12,6 +12,7 @@ export class DealerInfoSearchComponent implements OnInit {
   localState = { value: '' };
   screenHeight: number;
   screenWidth: number;
+  faSearch = faSearch;
 
   // TypeScript public modifiers
   constructor() {

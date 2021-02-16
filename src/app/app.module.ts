@@ -7,13 +7,13 @@ import { NoContentComponent } from './global/no-content/no-content.component';
 import { ContentComponent } from './content/content.component';
 import { RouterModule, Routes } from '@angular/router';
 import { TopNavBarComponent } from './menu/top-nav-bar/top-nav-bar.component';
-import { FontAwesomeDirective } from 'ng2-fontawesome';
 import { Footer } from './global/footer/footer.component';
 import { NetworkActivitiesComponent } from './content/network-activities/network-activities.component';
 import * as jQuery from 'jquery';
 import { WidgetComponent } from './ui-elements/widget/widget.component';
 import { HttpClientModule } from '@angular/common/http';
 import { DealerInfoSearchComponent } from './pages/dealer-info-search/dealer-info-search.component';
+import { FontAwesomeModule } from '@fortawesome/angular-fontawesome';
 
 export const AppRoutes2: Routes = [
   { path: '', component: ContentComponent },
@@ -31,12 +31,11 @@ export const AppRoutes2: Routes = [
     ContentComponent,
     DealerInfoSearchComponent,
     TopNavBarComponent,
-    FontAwesomeDirective,
     Footer,
     NetworkActivitiesComponent,
     WidgetComponent
   ],
-  imports: [BrowserModule, RouterModule.forRoot(AppRoutes2, { useHash: true }), HttpClientModule],
+  imports: [BrowserModule, RouterModule.forRoot(AppRoutes2, { useHash: true }), HttpClientModule, FontAwesomeModule],
   providers: [],
   bootstrap: [AppComponent]
 })
