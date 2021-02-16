@@ -11,11 +11,13 @@ import { FontAwesomeDirective } from 'ng2-fontawesome';
 import { Footer } from './global/footer/footer.component';
 import { NetworkActivitiesComponent } from './content/network-activities/network-activities.component';
 import * as jQuery from 'jquery';
-import { WidgetComponent } from './widget/widget.component';
+import { WidgetComponent } from './ui-elements/widget/widget.component';
 import { HttpClientModule } from '@angular/common/http';
+import { DealerInfoSearchComponent } from './pages/dealer-info-search/dealer-info-search.component';
 
 export const AppRoutes2: Routes = [
   { path: '', component: ContentComponent },
+  { path:'dealer', component: DealerInfoSearchComponent},
   /*{ path: 'inbox',  component: Inbox },
   { path: 'about', component: About },*/
   { path: '**', component: NoContentComponent }
@@ -27,6 +29,7 @@ export const AppRoutes2: Routes = [
     SidebarComponent,
     NoContentComponent,
     ContentComponent,
+    DealerInfoSearchComponent,
     TopNavBarComponent,
     FontAwesomeDirective,
     Footer,
