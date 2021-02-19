@@ -14,6 +14,7 @@ import { WidgetComponent } from './ui-elements/widget/widget.component';
 import { HttpClientModule } from '@angular/common/http';
 import { DealerInfoSearchComponent } from './pages/dealer-info-search/dealer-info-search.component';
 import { FontAwesomeModule } from '@fortawesome/angular-fontawesome';
+import {DxDataGridModule, DxBulletModule} from 'devextreme-angular';
 
 export const AppRoutes2: Routes = [
   { path: '', component: ContentComponent },
@@ -35,7 +36,14 @@ export const AppRoutes2: Routes = [
     NetworkActivitiesComponent,
     WidgetComponent
   ],
-  imports: [BrowserModule, RouterModule.forRoot(AppRoutes2, { useHash: true }), HttpClientModule, FontAwesomeModule],
+  imports: [
+            BrowserModule, 
+            RouterModule.forRoot(AppRoutes2, { useHash: true }), 
+            HttpClientModule, 
+            FontAwesomeModule,
+            DxDataGridModule,
+            DxBulletModule
+  ],
   providers: [],
   bootstrap: [AppComponent]
 })

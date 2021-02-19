@@ -5,6 +5,9 @@
     "outDir": "./dist/out-tsc",
     "sourceMap": true,
     "declaration": false,
+    "jszip": [
+      "node_modules/jszip/dist/jszip.min.js"
+    ],
     "moduleResolution": "node",
     "emitDecoratorMetadata": true,
     "experimentalDecorators": true,
