@@ -16,10 +16,7 @@ export class ContentComponent {
   constructor(public testService: TestService) {}
 
   ngOnInit() {
-    this.testService.getTestData()
-                    .subscribe(data => {
-                      console.log(data)
-                    })
+   
   }
 
   onButtonClickLambda() {
