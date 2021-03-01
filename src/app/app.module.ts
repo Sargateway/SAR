@@ -37,7 +37,7 @@ export const AppRoutes2: Routes = [
     WidgetComponent
   ],
   imports: [BrowserModule, 
-            RouterModule.forRoot(AppRoutes2, { useHash: true }), 
+            RouterModule.forRoot(AppRoutes2, { useHash: true, relativeLinkResolution: 'legacy' }), 
             HttpClientModule, 
             FontAwesomeModule,
             DxDataGridModule,
