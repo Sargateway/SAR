@@ -23,9 +23,9 @@ export class SidebarComponent {
   }
 
   anchorClicked(event: MouseEvent) {
-    let target = event.srcElement.id;
+    let target = $(event.target)
 
-    let $li = $("#" + target.replace("chevron", "li")).parent();
+    let $li = $(target).parent()
 
     if ($li.is(".active")) {
       $li.removeClass("active active-sm");

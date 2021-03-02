@@ -13,7 +13,6 @@ export class TopNavBarComponent {
   constructor() {}
 
   toggleClicked(event: MouseEvent) {
-    var target = event.srcElement.id;
     var body = $("body");
     var menu = $("#sidebar-menu");
 
