@@ -1,6 +1,6 @@
 import { SidebarComponent } from './menu/sidebar/sidebar.component';
-import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
+import { BrowserModule } from '@angular/platform-browser';
 
 import { AppComponent } from './app.component';
 import { NoContentComponent } from './global/no-content/no-content.component';
