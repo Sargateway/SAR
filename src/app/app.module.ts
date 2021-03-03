@@ -16,6 +16,9 @@ import { DealerInfoSearchComponent } from './pages/dealer-info-search/dealer-inf
 import { NewTransactionComponent } from './pages/new-transaction/new-transaction.component'
 import { FontAwesomeModule } from '@fortawesome/angular-fontawesome';
 import { DxDataGridModule, DxBulletModule, } from 'devextreme-angular';
+import { FormsModule } from '@angular/forms';
+import { MatStepperModule } from '@angular/material/stepper';
+import { BrowserAnimationsModule } from '@angular/platform-browser/animations'
 
 export const AppRoutes2: Routes = [
   { path: '', component: ContentComponent },
@@ -36,14 +39,18 @@ export const AppRoutes2: Routes = [
     TopNavBarComponent,
     Footer,
     NetworkActivitiesComponent,
-    WidgetComponent
+    WidgetComponent,
+
   ],
   imports: [BrowserModule, 
             RouterModule.forRoot(AppRoutes2, { useHash: true, relativeLinkResolution: 'legacy' }), 
             HttpClientModule, 
             FontAwesomeModule,
             DxDataGridModule,
-            DxBulletModule
+            DxBulletModule,
+            FormsModule,
+            MatStepperModule,
+            BrowserAnimationsModule
           ],
   providers: [],
   bootstrap: [AppComponent]

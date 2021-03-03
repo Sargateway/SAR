@@ -1,8 +1,8 @@
 import { Component, OnInit, HostListener } from '@angular/core';
+import {FormBuilder, FormGroup, Validators} from '@angular/forms';
 
 @Component({
   selector: 'new-transaction',
-  //styleUrls: ["../../styles.css"],
   templateUrl: './new-transaction.component.html',
   providers: []
 })
@@ -13,7 +13,7 @@ export class NewTransactionComponent implements OnInit {
   screenWidth: number;
 
   // TypeScript public modifiers
-  constructor() {
+  constructor(private formBuilder: FormBuilder) {
       this.getScreenSize();
   }
 
