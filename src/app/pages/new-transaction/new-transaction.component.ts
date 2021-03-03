@@ -1,18 +1,16 @@
 import { Component, OnInit, HostListener } from '@angular/core';
-import {faSearch} from '@fortawesome/free-solid-svg-icons'
 
 @Component({
-  selector: 'dealer-info-search',
+  selector: 'new-transaction',
   //styleUrls: ["../../styles.css"],
-  templateUrl: './dealer-info-search.component.html',
+  templateUrl: './new-transaction.component.html',
   providers: []
 })
-export class DealerInfoSearchComponent implements OnInit {
+export class NewTransactionComponent implements OnInit {
   // Set our default values
   localState = { value: '' };
   screenHeight: number;
   screenWidth: number;
-  faSearch = faSearch;
 
   // TypeScript public modifiers
   constructor() {
@@ -29,8 +27,4 @@ export class DealerInfoSearchComponent implements OnInit {
   ngOnInit() {
   }
 
-  submitState(value: string) {
-    console.log('submitState', value);
-    this.localState.value = '';
-  }
 }

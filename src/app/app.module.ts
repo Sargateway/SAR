@@ -13,12 +13,14 @@ import * as jQuery from 'jquery';
 import { WidgetComponent } from './ui-elements/widget/widget.component';
 import { HttpClientModule } from '@angular/common/http';
 import { DealerInfoSearchComponent } from './pages/dealer-info-search/dealer-info-search.component';
+import { NewTransactionComponent } from './pages/new-transaction/new-transaction.component'
 import { FontAwesomeModule } from '@fortawesome/angular-fontawesome';
 import { DxDataGridModule, DxBulletModule, } from 'devextreme-angular';
 
 export const AppRoutes2: Routes = [
   { path: '', component: ContentComponent },
   { path:'dealer', component: DealerInfoSearchComponent},
+  { path:'newTransaction', component: NewTransactionComponent},
   /*{ path: 'inbox',  component: Inbox },
   { path: 'about', component: About },*/
   { path: '**', component: NoContentComponent }
