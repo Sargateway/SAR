@@ -16,16 +16,15 @@ import { DealerInfoSearchComponent } from './pages/dealer-info-search/dealer-inf
 import { NewTransactionComponent } from './pages/new-transaction/new-transaction.component'
 import { FontAwesomeModule } from '@fortawesome/angular-fontawesome';
 import { DxDataGridModule, DxBulletModule, } from 'devextreme-angular';
-import { FormsModule } from '@angular/forms';
+import { ReactiveFormsModule, FormsModule } from '@angular/forms';
 import { MatStepperModule } from '@angular/material/stepper';
-import { BrowserAnimationsModule } from '@angular/platform-browser/animations'
+import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
+import { MaterialModule } from './ui-elements/material/material.module';
 
 export const AppRoutes2: Routes = [
   { path: '', component: ContentComponent },
   { path:'dealer', component: DealerInfoSearchComponent},
   { path:'newTransaction', component: NewTransactionComponent},
-  /*{ path: 'inbox',  component: Inbox },
-  { path: 'about', component: About },*/
   { path: '**', component: NoContentComponent }
 ];
 
@@ -40,7 +39,7 @@ export const AppRoutes2: Routes = [
     Footer,
     NetworkActivitiesComponent,
     WidgetComponent,
-
+    NewTransactionComponent
   ],
   imports: [BrowserModule, 
             RouterModule.forRoot(AppRoutes2, { useHash: true, relativeLinkResolution: 'legacy' }), 
@@ -48,9 +47,11 @@ export const AppRoutes2: Routes = [
             FontAwesomeModule,
             DxDataGridModule,
             DxBulletModule,
-            FormsModule,
+            MaterialModule,
             MatStepperModule,
-            BrowserAnimationsModule
+            BrowserAnimationsModule,
+            FormsModule,
+            ReactiveFormsModule
           ],
   providers: [],
   bootstrap: [AppComponent]
