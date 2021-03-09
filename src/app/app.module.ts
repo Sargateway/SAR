@@ -15,7 +15,7 @@ import { HttpClientModule } from '@angular/common/http';
 import { DealerInfoSearchComponent } from './pages/dealer-info-search/dealer-info-search.component';
 import { NewTransactionComponent } from './pages/new-transaction/new-transaction.component'
 import { FontAwesomeModule } from '@fortawesome/angular-fontawesome';
-import { DxDataGridModule, DxBulletModule, } from 'devextreme-angular';
+import { DxDataGridModule, DxBulletModule, DxPopupModule, DxTemplateModule, } from 'devextreme-angular';
 import { ReactiveFormsModule, FormsModule } from '@angular/forms';
 import { MatStepperModule } from '@angular/material/stepper';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
@@ -47,6 +47,8 @@ export const AppRoutes2: Routes = [
             FontAwesomeModule,
             DxDataGridModule,
             DxBulletModule,
+            DxPopupModule,
+            DxTemplateModule,
             MaterialModule,
             MatStepperModule,
             BrowserAnimationsModule,

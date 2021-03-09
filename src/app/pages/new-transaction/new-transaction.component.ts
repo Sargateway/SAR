@@ -18,11 +18,12 @@ export class NewTransactionComponent implements OnInit {
   secondFormGroup: FormGroup;
   newCustomer: CustomerModel = new CustomerModel();
   customerPhoneNumber: string = '';
-  isExistingCustomer: boolean = false;
+  isExistingCustomer: boolean = null;
   existingCustomer: CustomerModel = new CustomerModel();
   recipientPhoneNumber: string = '';
   existingRecipient: CustomerModel = new CustomerModel();
   newTransactionAmount: string = '';
+  updateUserVisible: boolean = false;
 
   // TypeScript public modifiers
   constructor(
@@ -31,6 +32,8 @@ export class NewTransactionComponent implements OnInit {
     ) {
       this.getScreenSize();
   }
+
+  attributes = Object.keys(this.existingCustomer);
 
   existingCustomerCheck(isTrue: boolean) {
     this.isExistingCustomer = isTrue
@@ -70,8 +73,21 @@ export class NewTransactionComponent implements OnInit {
     }
   }
 
+  onUpdateCustomerClick() {
+    this.updateUserVisible = true
+  }
+
+  onSaveCustomerClick() {
+    this.updateUserVisible = false
+  }
+
+  onCancelCustomerClick() {
+    this.updateUserVisible = false
+    location.reload()
+  }
+
   createTransaction() {
-    
+
   }
 
 
