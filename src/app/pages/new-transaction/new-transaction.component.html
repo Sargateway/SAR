@@ -5,84 +5,88 @@
     <mat-vertical-stepper [linear]="isLinear" #stepper>
         <mat-step [stepControl]="firstFormGroup">
             <form [formGroup]="firstFormGroup">
-                <ng-template matStepLabel></ng-template>
-                <mat-form-field>
+                <ng-template matStepLabel>Existing Customer?</ng-template>
+                <mat-form-field style="width:400px;">
                     <h2 matInput fromControlName="firstCtrl">Are you an existing customer?</h2>
                     <input matInput style="display:none;" formControlName="firstCtrl">
-                </mat-form-field>
-                <div>
                     <button mat-button matStepperNext (click)="existingCustomerCheck(true)">Yes</button>
                     <button mat-button matStepperNext (click)="existingCustomerCheck(false)">No</button>
-                </div>
+                </mat-form-field>
             </form>
         </mat-step>
         <mat-step [stepControl]="firstFormGroup">
             <form [formGroup]="firstFormGroup">
-                <ng-template matStepLabel></ng-template>
+                <ng-template matStepLabel>Find/Create Customer</ng-template>
                 <h2>Enter your phone number</h2>
                 <mat-form-field>
-                    <input matInput placeholder="(***) ***-****" formControlName="firstCtrl" [(ngModel)]="customerPhoneNumber" required>
+                    <mat-label>Phone Number</mat-label>
+                    <input matInput formControlName="firstCtrl" [(ngModel)]="customerPhoneNumber" required>
                 </mat-form-field>
                 <div>
-                    <button mat-button matStepperNext (click)="searchCustomer()">Continue</button>
+                    <button mat-raised-button matStepperNext (click)="searchCustomer()">Continue</button>
                 </div>
             </form>
         </mat-step>
         <mat-step [stepControl]="firstFormGroup">
             <form [formGroup]="firstFormGroup">
-                <ng-template matStepLabel></ng-template>
+                <ng-template matStepLabel>Verify Customer Info</ng-template>
                 <h2>Does this match?</h2>
-                <mat-form-field>
+                <mat-form-field style="width:450px;">
                     <input matInput style="display:none;" formControlName="firstCtrl">
                     <h2>{{existingCustomer.first_name + ' ' + existingCustomer.last_name}}</h2>
                 </mat-form-field>
                 <div>
-                    <button mat-button matStepperNext>Yes</button>
-                    <button mat-button matStepperNext>No</button>
+                    <button mat-raised-button matStepperNext>Yes</button>
+                    <button mat-raised-button matStepperNext>No</button>
                 </div>
             </form>
         </mat-step>
-        <mat-step [stepControl]="secondFormGroup" *ngIf="existingCustomer">
+        <mat-step [stepControl]="secondFormGroup">
                 <form [formGroup]="secondFormGroup">
-                    <ng-template matStepLabel>Fill out your address</ng-template>
-                    <mat-form-field>
-                        <mat-label>First Name</mat-label>
-                        <input matInput formControlName="secondCtrl" [(ngModel)]="newCustomer.first_name" placeholder="Ex. 1 Main St, New York, NY" required>
-                        <mat-label>Last Name</mat-label>
-                        <input matInput formControlName="secondCtrl" placeholder="Ex. 1 Main St, New York, NY" required>
+                    <ng-template matStepLabel>Search Recipient</ng-template>
+                    <mat-form-field style="width:300px;">
                         <mat-label>Phone Number</mat-label>
-                        <input matInput formControlName="secondCtrl" placeholder="Ex. 1 Main St, New York, NY" required>
-
+                        <input matInput formControlName="secondCtrl" [(ngModel)]="recipientPhoneNumber" required>
                     </mat-form-field>
                     <div>
-                        <button mat-button matStepperPrevious>Back</button>
-                        <button mat-button matStepperNext>Next</button>
+                        <button mat-raised-button matStepperPrevious>Back</button>
+                        <button mat-raised-button matStepperNext (click)="searchRecipient()">Next</button>
                     </div>
                 </form>
             </mat-step>
-        <mat-step [stepControl]="secondFormGroup" *ngIf="!existingCustomer">
+        <mat-step [stepControl]="secondFormGroup">
             <form [formGroup]="secondFormGroup">
-                <ng-template matStepLabel>Fill out your address</ng-template>
-                <mat-form-field>
-                    <mat-label>First Name</mat-label>
-                    <input matInput formControlName="secondCtrl" [(ngModel)]="newCustomer.first_name" placeholder="Ex. 1 Main St, New York, NY" required>
-                    <mat-label>Last Name</mat-label>
-                    <input matInput formControlName="secondCtrl" placeholder="Ex. 1 Main St, New York, NY" required>
-                    <mat-label>Phone Number</mat-label>
-                    <input matInput formControlName="secondCtrl" placeholder="Ex. 1 Main St, New York, NY" required>
+                <ng-template matStepLabel>Verify Recipient Info</ng-template>
+                <h2>Does this match?</h2>
+                <mat-form-field style="width:450px;">
+                        <input matInput style="display:none;" formControlName="secondCtrl">
+                        <h2>{{existingRecipient.first_name + ' ' + existingRecipient.last_name}}</h2>
                 </mat-form-field>
                 <div>
-                    <button mat-button matStepperPrevious>Back</button>
-                    <button mat-button matStepperNext>Next</button>
+                    <button mat-raised-button matStepperPrevious>Back</button>
+                    <button mat-raised-button matStepperNext>Next</button>
                 </div>
             </form>
         </mat-step>
+        <mat-step [stepControl]="secondFormGroup">
+                <form [formGroup]="secondFormGroup">
+                    <ng-template matStepLabel>Transaction Details</ng-template>
+                    <mat-form-field style="width: 450px;">
+                        <mat-label>Amount to send</mat-label>
+                        <input matInput formControlName="secondCtrl" [(ngModel)]="newTransactionAmount" required>
+                    </mat-form-field>
+                    <div>
+                        <button mat-raised-button matStepperPrevious>Back</button>
+                        <button mat-raised-button matStepperNext>Next</button>
+                    </div>
+                </form>
+            </mat-step>
         <mat-step>
             <ng-template matStepLabel>Done</ng-template>
-            <p>You are now done.</p>
+            <p>Create Transaction</p>
             <div>
-                <button mat-button matStepperPrevious>Back</button>
-                <button mat-button (click)="stepper.reset()">Reset</button>
+                <button mat-raised-button matStepperPrevious>Back</button>
+                <button mat-raised-button (click)="createTransaction()">Create</button>
             </div>
         </mat-step>
     </mat-vertical-stepper>

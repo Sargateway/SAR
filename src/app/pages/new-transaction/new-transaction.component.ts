@@ -20,6 +20,9 @@ export class NewTransactionComponent implements OnInit {
   customerPhoneNumber: string = '';
   isExistingCustomer: boolean = false;
   existingCustomer: CustomerModel = new CustomerModel();
+  recipientPhoneNumber: string = '';
+  existingRecipient: CustomerModel = new CustomerModel();
+  newTransactionAmount: string = '';
 
   // TypeScript public modifiers
   constructor(
@@ -44,13 +47,31 @@ export class NewTransactionComponent implements OnInit {
       this.customerService.getCustomer(this.customerPhoneNumber)
                           .subscribe(data => {
                             if (data.length > 1) {
-                              
+
                             }
                             else {
                               this.existingCustomer = data[0]
                             }
                           })
     }
+  }
+
+  searchRecipient() {
+    if (this.recipientPhoneNumber.length > 0) {
+      this.customerService.getCustomer(this.recipientPhoneNumber)
+                          .subscribe(data => {
+                            if (data.length > 1) {
+
+                            }
+                            else {
+                              this.existingRecipient = data[0]
+                            }
+                          })
+    }
+  }
+
+  createTransaction() {
+    
   }
 
 
