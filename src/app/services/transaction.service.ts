@@ -3,10 +3,12 @@ import { HttpClient, HttpHeaders } from '@angular/common/http';
 
 import { Observable } from 'rxjs';
 import { CustomerModel } from '../models/customer';
+import { TransactionModel } from '../models/transaction';
 @Injectable()
-export class CustomerService {
+export class TransactionService {
     constructor(private http: HttpClient) { }
-    getCustomer(phoneNumber: string): Observable<CustomerModel[]> {
-        return this.http.get<CustomerModel[]>("https://saz5vu03e9.execute-api.us-east-2.amazonaws.com/prod/fetch-customer?customerPhoneNumber=" + phoneNumber)
+    url: string = '';
+    createTransaction(transactionData: TransactionModel) {
+        return this.http.put(this.url, transactionData)
     }
 }
