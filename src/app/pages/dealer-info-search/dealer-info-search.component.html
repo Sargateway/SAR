@@ -2,15 +2,16 @@
     <div class="row">
         <widget title="Search Criteria">
             <div class="row">
-                <div class="col-lg-2">
-                    <div class="row">
-                        <input type="text">
-                    </div>
-                    <div class="row" sty>
-                        <label>First Name</label>
-                    </div>
+                <div class="col-lg-2 form-group">
+                    <label for="firstNameSearch">First Name</label>
+                    <input type="text" class="form-control" id="firstNameSearch">
                 </div>
-                <button class="btn btn-success">Search <fa-icon [icon]="faSearch"></fa-icon></button>
+                <div class="col-lg-1">
+
+                </div>
+                <div class="col-lg-1" style="margin-top:19px;">
+                    <button class="btn btn-success">Search <fa-icon [icon]="faSearch"></fa-icon></button>
+                </div>
             </div>
         </widget>
     </div>

@@ -1,36 +1,36 @@
 <div class="row">
     <div class="col-lg-4">
         <label>First Name</label>
-        <input type="text" [(ngModel)]="newCustomer.first_name">
+        <input type="text" class="form-control" [(ngModel)]="newCustomer.first_name">
     </div>
     <div class="col-lg-4">
         <label>Last Name</label>
-        <input type="text" [(ngModel)]="newCustomer.last_name">
+        <input type="text" class="form-control" [(ngModel)]="newCustomer.last_name">
     </div>
     <div class="col-lg-4">
         <label>Phone Number</label>
-        <input type="text" [(ngModel)]="newCustomer.phone_number">
+        <input type="text" class="form-control" [(ngModel)]="newCustomer.phone_number">
     </div>
 </div>
 <div class="row">
     <div class="col-lg-3">
         <label>Street</label>
-        <input type="text" [(ngModel)]="newCustomer.customer_address">
+        <input type="text" class="form-control" [(ngModel)]="newCustomer.customer_address">
     </div>
     <div class="col-lg-3">
         <label>City</label>
-        <input type="text" [(ngModel)]="newCustomer.customer_city">
+        <input type="text" class="form-control" [(ngModel)]="newCustomer.customer_city">
     </div>
     <div class="col-lg-3">
         <label>State</label>
-        <input type="text" [(ngModel)]="newCustomer.customer_state">
+        <input type="text" class="form-control" [(ngModel)]="newCustomer.customer_state">
     </div>
     <div class="col-lg-3">
         <label>ZIP</label>
-        <input type="text" [(ngModel)]="newCustomer.customer_zip">
+        <input type="text" class="form-control" [(ngModel)]="newCustomer.customer_zip">
     </div>
 </div>
-<div class="row">
+<div class="row" style="margin-top: 10px;margin-left: 0px;">
     <button type="button" class="btn btn-success" (click)="onCreateClick()">Create</button>
     <button type="button" class="btn btn-danger">Cancel</button>
 </div>
