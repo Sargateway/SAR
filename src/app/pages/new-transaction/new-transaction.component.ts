@@ -24,6 +24,7 @@ export class NewTransactionComponent implements OnInit {
   existingRecipient: CustomerModel = new CustomerModel();
   newTransactionAmount: string = '';
   updateUserVisible: boolean = false;
+  createCustomerVisible: boolean = false;
 
   // TypeScript public modifiers
   constructor(
@@ -88,6 +89,14 @@ export class NewTransactionComponent implements OnInit {
 
   createTransaction() {
 
+  }
+
+  onCreateCustomerClick() {
+    this.createCustomerVisible = true;
+  }
+
+  onCreateCustomerHide() {
+    this.createCustomerVisible = false;
   }
 
 

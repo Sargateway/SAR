@@ -9,4 +9,7 @@ export class CustomerService {
     getCustomer(phoneNumber: string): Observable<CustomerModel[]> {
         return this.http.get<CustomerModel[]>("https://saz5vu03e9.execute-api.us-east-2.amazonaws.com/prod/fetch-customer?customerPhoneNumber=" + phoneNumber)
     }
+    createCustomer(newCustomer: CustomerModel) {
+        return this.http.put("https://saz5vu03e9.execute-api.us-east-2.amazonaws.com/prod/store-customer", newCustomer)
+    }
 }

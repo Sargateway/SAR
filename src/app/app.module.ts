@@ -9,7 +9,6 @@ import { RouterModule, Routes } from '@angular/router';
 import { TopNavBarComponent } from './menu/top-nav-bar/top-nav-bar.component';
 import { Footer } from './global/footer/footer.component';
 import { NetworkActivitiesComponent } from './content/network-activities/network-activities.component';
-import * as jQuery from 'jquery';
 import { WidgetComponent } from './ui-elements/widget/widget.component';
 import { HttpClientModule } from '@angular/common/http';
 import { DealerInfoSearchComponent } from './pages/dealer-info-search/dealer-info-search.component';
@@ -20,6 +19,7 @@ import { ReactiveFormsModule, FormsModule } from '@angular/forms';
 import { MatStepperModule } from '@angular/material/stepper';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { MaterialModule } from './ui-elements/material/material.module';
+import { CreateCustomerComponent } from './pop-ups/create-customer/create-customer.component';
 
 export const AppRoutes2: Routes = [
   { path: '', component: ContentComponent },
@@ -39,7 +39,8 @@ export const AppRoutes2: Routes = [
     Footer,
     NetworkActivitiesComponent,
     WidgetComponent,
-    NewTransactionComponent
+    NewTransactionComponent,
+    CreateCustomerComponent
   ],
   imports: [BrowserModule, 
             RouterModule.forRoot(AppRoutes2, { useHash: true, relativeLinkResolution: 'legacy' }), 
