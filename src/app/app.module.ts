@@ -20,11 +20,17 @@ import { MatStepperModule } from '@angular/material/stepper';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { MaterialModule } from './ui-elements/material/material.module';
 import { CreateCustomerComponent } from './pop-ups/create-customer/create-customer.component';
+import { AuthModule } from '@auth0/auth0-angular';
+import { LoginComponent } from './pages/login/login.component';
+import { AuthButtonComponent } from './pages/login/login-button.component';
+import { AuthService } from '@auth0/auth0-angular';
+import { domain, clientId } from '../assets/secret';
 
 export const AppRoutes2: Routes = [
+  { path: 'login', component: LoginComponent },
+  { path:'dealer', component: DealerInfoSearchComponent },
+  { path:'newTransaction', component: NewTransactionComponent },
   { path: '', component: ContentComponent },
-  { path:'dealer', component: DealerInfoSearchComponent},
-  { path:'newTransaction', component: NewTransactionComponent},
   { path: '**', component: NoContentComponent }
 ];
 
@@ -40,7 +46,9 @@ export const AppRoutes2: Routes = [
     NetworkActivitiesComponent,
     WidgetComponent,
     NewTransactionComponent,
-    CreateCustomerComponent
+    CreateCustomerComponent,
+    LoginComponent,
+    AuthButtonComponent,
   ],
   imports: [BrowserModule, 
             RouterModule.forRoot(AppRoutes2, { useHash: true, relativeLinkResolution: 'legacy' }), 
@@ -54,9 +62,13 @@ export const AppRoutes2: Routes = [
             MatStepperModule,
             BrowserAnimationsModule,
             FormsModule,
-            ReactiveFormsModule
+            ReactiveFormsModule,
+            AuthModule.forRoot({
+              domain: domain,
+              clientId: clientId
+            }),
           ],
-  providers: [],
+  providers: [ AuthService ],
   bootstrap: [AppComponent]
 })
 export class AppModule {}
