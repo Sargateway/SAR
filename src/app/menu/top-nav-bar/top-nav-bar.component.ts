@@ -13,6 +13,7 @@ export class TopNavBarComponent {
   constructor() {}
 
   toggleClicked(event: MouseEvent) {
+    var target = event.target
     var body = $("body");
     var menu = $("#sidebar-menu");
 
@@ -33,8 +34,24 @@ export class TopNavBarComponent {
     body.toggleClass("nav-md nav-sm");
   }
 
+  onUserClick(e: MouseEvent) {
+    var userMenu = $("#userMenu")
+
+    //toggle show or hide
+    if (userMenu.css("display") == "none") {
+      userMenu.css("display", "block")
+    }
+    else {
+      userMenu.css("display", "none")
+    }
+    
+  }
+
+  onUserBlur(e: any) {
+      console.log("blur")
+  }
+
   ngOnInit() {
-    console.log("hello `topnavbar` component");
   }
 
   ngAfterViewInit() {}

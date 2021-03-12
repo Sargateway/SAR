@@ -1,11 +1,13 @@
 import { Component, OnInit, HostListener } from '@angular/core';
 import {faSearch} from '@fortawesome/free-solid-svg-icons'
+import { TransactionService } from 'src/app/services/transaction.service';
+import { TransactionModel } from 'src/app/models/transaction';
 
 @Component({
   selector: 'dealer-info-search',
   //styleUrls: ["../../styles.css"],
   templateUrl: './dealer-info-search.component.html',
-  providers: []
+  providers: [ TransactionService ]
 })
 export class DealerInfoSearchComponent implements OnInit {
   // Set our default values
@@ -13,9 +15,12 @@ export class DealerInfoSearchComponent implements OnInit {
   screenHeight: number;
   screenWidth: number;
   faSearch = faSearch;
+  searchResults: TransactionModel[] = []
 
   // TypeScript public modifiers
-  constructor() {
+  constructor(
+    private transactionService: TransactionService,
+  ) {
       this.getScreenSize();
   }
 
@@ -23,6 +28,14 @@ export class DealerInfoSearchComponent implements OnInit {
   getScreenSize(event?) {
       this.screenHeight = window.innerHeight;
       this.screenWidth = window.innerWidth;
+  }
+
+  onSearchClick() {
+    this.transactionService.getAllTransactions()
+                           .subscribe(data => {
+                            this.searchResults = data
+                            console.log(this.searchResults)
+                           })
   }
 
 

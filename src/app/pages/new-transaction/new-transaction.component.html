@@ -1,14 +1,14 @@
 <div class="right_col" [style.height.px]="screenHeight-51" role="main">
     <div class="col-lg-12" *ngIf="isExistingCustomer == null">
         <div class="row">
-            <h2>Are you an existing Customer?</h2>
+        <h2>Are you an existing Customer?</h2>
         </div>
         <div class="row">
             <button type="button" class="btn btn-success" (click)="existingCustomerCheck(true)">Yes</button>
             <button type="button" class="btn btn-danger" (click)="existingCustomerCheck(false)">No</button>
         </div>
     </div>
-    
+
     <mat-vertical-stepper [linear]="isLinear" #stepper *ngIf="isExistingCustomer">
         <mat-step [stepControl]="firstFormGroup">
             <form [formGroup]="firstFormGroup">
@@ -29,35 +29,48 @@
                 <h2>Please verify the following data:</h2>
                 <mat-form-field style="width:450px;">
                     <input matInput style="display:none;" formControlName="firstCtrl">
-                    <h2 *ngFor="let attribute of attributes; index as i">{{existingCustomer[attributes[i]]}}</h2>
+                    <h2 *ngFor="let attribute of attributes; index as i">{{attributes[i] + ': ' + existingCustomer[attributes[i]]}}</h2>
                 </mat-form-field>
                 <div>
-                    <button mat-raised-button matStepperNext>Yes</button>
+                    <button mat-raised-button matStepperNext (click)="setTransactionFrom()">Yes</button>
                     <button mat-raised-button (click)="onUpdateCustomerClick()">No</button>
                 </div>
             </form>
         </mat-step>
         <mat-step [stepControl]="secondFormGroup">
-                <form [formGroup]="secondFormGroup">
-                    <ng-template matStepLabel>Search Recipient</ng-template>
-                    <mat-form-field style="width:300px;">
-                        <mat-label>Phone Number</mat-label>
-                        <input matInput formControlName="secondCtrl" [(ngModel)]="recipientPhoneNumber" required>
-                    </mat-form-field>
-                    <div>
-                        <button mat-raised-button matStepperPrevious>Back</button>
-                        <button mat-raised-button matStepperNext (click)="searchRecipient()">Next</button>
-                        <button mat-raised-button (click)="onCreateCustomerClick()">Create Customer</button>
-                    </div>
-                </form>
-            </mat-step>
+            <form [formGroup]="secondFormGroup">
+                <ng-template matStepLabel>Search Recipient</ng-template>
+                <mat-form-field style="width:300px;">
+                    <mat-label>Phone Number</mat-label>
+                    <input matInput formControlName="secondCtrl" [(ngModel)]="recipientPhoneNumber" required>
+                </mat-form-field>
+                <div>
+                    <button mat-raised-button matStepperPrevious>Back</button>
+                    <button mat-raised-button matStepperNext (click)="searchRecipient()">Next</button>
+                    <button mat-raised-button (click)="onCreateCustomerClick()">Create Customer</button>
+                </div>
+            </form>
+        </mat-step>
         <mat-step [stepControl]="secondFormGroup">
             <form [formGroup]="secondFormGroup">
                 <ng-template matStepLabel>Verify Recipient Info</ng-template>
                 <h2>Please verify the following data:</h2>
                 <mat-form-field style="width:450px;">
-                        <input matInput style="display:none;" formControlName="secondCtrl">
-                        <h2 *ngFor="let attribute of attributes; index as i">{{existingRecipient[attributes[i]]}}</h2>
+                    <input matInput style="display:none;" formControlName="secondCtrl">
+                    <h2 *ngFor="let attribute of attributes; index as i">{{attributes[i] + ': ' + existingRecipient[attributes[i]]}}</h2>
+                </mat-form-field>
+                <div>
+                    <button mat-raised-button matStepperPrevious>Back</button>
+                    <button mat-raised-button matStepperNext (click)="setTransactionTo()">Next</button>
+                </div>
+            </form>
+        </mat-step>
+        <mat-step [stepControl]="secondFormGroup">
+            <form [formGroup]="secondFormGroup">
+                <ng-template matStepLabel>Transaction Details</ng-template>
+                <mat-form-field style="width: 450px;">
+                    <mat-label>Amount to send</mat-label>
+                    <input matInput formControlName="secondCtrl" [(ngModel)]="newTransaction.transaction_amount" required>
                 </mat-form-field>
                 <div>
                     <button mat-raised-button matStepperPrevious>Back</button>
@@ -65,40 +78,21 @@
                 </div>
             </form>
         </mat-step>
-        <mat-step [stepControl]="secondFormGroup">
-                <form [formGroup]="secondFormGroup">
-                    <ng-template matStepLabel>Transaction Details</ng-template>
-                    <mat-form-field style="width: 450px;">
-                        <mat-label>Amount to send</mat-label>
-                        <input matInput formControlName="secondCtrl" [(ngModel)]="newTransactionAmount" required>
-                    </mat-form-field>
-                    <div>
-                        <button mat-raised-button matStepperPrevious>Back</button>
-                        <button mat-raised-button matStepperNext>Next</button>
-                    </div>
-                </form>
-            </mat-step>
         <mat-step>
-            <ng-template matStepLabel>Done</ng-template>
-            <p>Create Transaction</p>
+            <ng-template matStepLabel>Create Transaction</ng-template>
+            <h2>Verify Transaction Details</h2>
+            <h2>{{'From: ' + existingCustomer.first_name + ' ' + existingCustomer.last_name}}</h2>
+            <h2>{{'To: ' + existingRecipient.first_name + ' ' + existingRecipient.last_name}}</h2>
+            <h2>{{'Amount: ' + newTransaction.transaction_amount}}</h2>
             <div>
                 <button mat-raised-button matStepperPrevious>Back</button>
                 <button mat-raised-button (click)="createTransaction()">Create</button>
             </div>
         </mat-step>
     </mat-vertical-stepper>
-    <mat-vertical-stepper *ngIf="!isExistingCustomer">
-
-    </mat-vertical-stepper>
 </div>
-<dx-popup
-        [width]="600"
-        [height]="600"
-        [showTitle]="true"
-        title="Update Customer"
-        [dragEnabled]="false"
-        [closeOnOutsideClick]="true"
-        [(visible)]="updateUserVisible">
+<dx-popup [width]="600" [height]="600" [showTitle]="true" title="Update Customer" [dragEnabled]="false"
+    [closeOnOutsideClick]="true" [(visible)]="updateUserVisible">
     <div *dxTemplate="let data of 'content'">
         <div class="row">
             <h2>Update Customer Information:</h2>
@@ -133,14 +127,8 @@
         </div>
     </div>
 </dx-popup>
-<dx-popup
-    [width]="screenWidth/2"
-    [height]="screenHeight/4"
-    [showTitle]="true"
-    title="Create Customer"
-    [dragEnabled]="false"
-    [closeOnOutsideClick]="true"
-    [(visible)]="createCustomerVisible">
+<dx-popup [width]="screenWidth/2" [height]="screenHeight/4" [showTitle]="true" title="Create Customer"
+    [dragEnabled]="false" [closeOnOutsideClick]="true" [(visible)]="createCustomerVisible">
     <div *dxTemplate="let data of 'content'">
         <create-customer (onHide)="onCreateCustomerHide()"></create-customer>
     </div>

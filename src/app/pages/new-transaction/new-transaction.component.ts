@@ -1,12 +1,14 @@
-import { Component, OnInit, HostListener } from '@angular/core';
+import { Component, OnInit, HostListener, ViewChild } from '@angular/core';
 import {FormBuilder, FormGroup, Validators} from '@angular/forms';
 import { CustomerModel } from '../../models/customer';
 import { CustomerService } from 'src/app/services/customer.service';
+import { TransactionService } from 'src/app/services/transaction.service';
+import { TransactionModel } from 'src/app/models/transaction';
 
 @Component({
   selector: 'new-transaction',
   templateUrl: './new-transaction.component.html',
-  providers: [ CustomerService ]
+  providers: [ CustomerService, TransactionService ]
 })
 export class NewTransactionComponent implements OnInit {
   // Set our default values
@@ -25,11 +27,13 @@ export class NewTransactionComponent implements OnInit {
   newTransactionAmount: string = '';
   updateUserVisible: boolean = false;
   createCustomerVisible: boolean = false;
+  newTransaction: TransactionModel = new TransactionModel();
 
   // TypeScript public modifiers
   constructor(
     private formBuilder: FormBuilder,
     private customerService: CustomerService,
+    private transactionService: TransactionService
     ) {
       this.getScreenSize();
   }
@@ -37,8 +41,13 @@ export class NewTransactionComponent implements OnInit {
   attributes = Object.keys(this.existingCustomer);
 
   existingCustomerCheck(isTrue: boolean) {
-    this.isExistingCustomer = isTrue
+    this.isExistingCustomer = isTrue;
+    if (!isTrue) {
+      this.createCustomerVisible = true;
+    }
   }
+
+  @ViewChild('stepper') stepper
 
   @HostListener('window:resize', ['$event'])
   getScreenSize(event?) {
@@ -88,7 +97,10 @@ export class NewTransactionComponent implements OnInit {
   }
 
   createTransaction() {
-
+    this.transactionService.createTransaction(this.newTransaction)
+                           .subscribe(data => {
+                            this.stepper.reset()
+                           })
   }
 
   onCreateCustomerClick() {
@@ -97,8 +109,17 @@ export class NewTransactionComponent implements OnInit {
 
   onCreateCustomerHide() {
     this.createCustomerVisible = false;
+    this.isExistingCustomer = null;
   }
 
+  setTransactionFrom() {
+    this.newTransaction.customer_id_from = this.existingCustomer.customer_id
+  }
+
+  setTransactionTo() {
+    this.newTransaction.customer_id_to = this.existingRecipient.customer_id
+    this.newTransaction.dealer_id = '1'
+  }
 
   ngOnInit() {
     this.firstFormGroup = this.formBuilder.group({

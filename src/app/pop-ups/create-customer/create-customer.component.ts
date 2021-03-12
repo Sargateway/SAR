@@ -29,4 +29,9 @@ export class CreateCustomerComponent implements OnInit {
       alert("You must enter a first name, last name, and a phone number")
     }
   }
+
+  onCancelClick() {
+    this.newCustomer = new CustomerModel()
+    this.onHide.emit()
+  }
 }
