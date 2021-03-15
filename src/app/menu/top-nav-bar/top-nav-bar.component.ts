@@ -1,5 +1,6 @@
 import { Component } from "@angular/core";
 import * as $ from "jquery";
+import { AuthService } from '@auth0/auth0-angular';
 
 @Component({
   selector: "topnav-bar", // <home></home>
@@ -10,7 +11,7 @@ import * as $ from "jquery";
 })
 export class TopNavBarComponent {
   // TypeScript public modifier
-  constructor() {}
+  constructor( private auth: AuthService) {}
 
   toggleClicked(event: MouseEvent) {
     var target = event.target
@@ -47,8 +48,8 @@ export class TopNavBarComponent {
     
   }
 
-  onUserBlur(e: any) {
-      console.log("blur")
+  logout() {
+    this.auth.logout({returnTo: window.location.origin})
   }
 
   ngOnInit() {
